@@ -1,0 +1,36 @@
+-------------------MSG-DEEP-DIVE----------------------------------------------------------------
+
+msg.sender = the wallet address of the person who's interacting with the smart contract.
+msg.data = Hash of the information that is sent to solidity and to the smart contract with the information that is needed in order to just run the correct function. (it contains a function and it's parameters)
+msg.sig = only contains signature of the function.
+msg.value = value is that is sent by whoever is interacting with the contract -- value in wei.
+tx.gas = gas fee that was used in the transaction.
+tx.origin = address of the first person who started the transaction.
+
+Example 1: 
+
+Person A --> Contract A 
+msg.sender = wallet address of Person A
+
+Example 2: 
+
+Person A --> Contract A --> Contract B
+msg.sender = wallet address of Contract A.
+tx.orignin = wallet address of Person A. (true for even a long chain).
+
+---------------------BLOCK-DEEP-DIVE-----------------------------------------------------------
+
+block.timestamp = returns current block timestamp in epoch (number of seconds elapsed since Jan 1st 1970).
+block.chainid = returns the blockchain id (used to confirm the use of the intended blockchain, not another fork).
+--> This came out when Ethereum classic was formed to avoid confusion. Ethereum has an id of 1.
+
+block.coinbase - returns the address of current block's miner.
+block.gaslimit - returns current block's gas limit
+--> gas limit = maximum sum of gas fees for the block.
+
+block.number - returns the current block number.
+block.difficulty - returns current block difficulty.
+(block.difficulty is often used to get random numbers because solidity doesn't have random function like other languages)
+
+blockhash() - returns the hash of the current block.
+gasleft() - returns the gas left for the current transaction/contract.
